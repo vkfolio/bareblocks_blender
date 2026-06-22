@@ -1,0 +1,33 @@
+schema_version = "1.0.0"
+
+id = "bareblocks"
+version = "1.0.0"
+name = "BareBlocks"
+tagline = "Parametric blockout primitives for level greyboxing"
+maintainer = "BareBlocks <you@example.com>"
+type = "add-on"
+
+website = "https://example.com/bareblocks"
+
+tags = ["Geometry Nodes", "Modeling"]
+
+blender_version_min = "4.2.0"
+
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
+
+copyright = [
+  "2026 BareBlocks",
+]
+
+# Keep the add-on zip lean: never ship the website, dev cruft, or build artifacts.
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "/docs/",
+  "/.git/",
+  "/.github/",
+  "/*.zip",
+  "*.blend1",
+]

@@ -1,0 +1,72 @@
+name: Release
+
+# Builds the Blender extension and publishes a GitHub Release with the .zip attached.
+# Trigger by pushing a version tag, e.g.:   git tag v1.0.0 && git push origin v1.0.0
+# Or run manually from the Actions tab (produces a downloadable artifact, no release).
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write          # needed to create the Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BLENDER_VERSION: "4.2.3"   # build with this Blender (>= manifest blender_version_min)
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install headless Blender runtime deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            xvfb libxxf86vm1 libxfixes3 libxi6 libxrender1 libxkbcommon0 libgl1 libsm6
+
+      - name: Download Blender ${{ env.BLENDER_VERSION }}
+        run: |
+          set -euo pipefail
+          MAJOR="$(echo "$BLENDER_VERSION" | cut -d. -f1,2)"
+          URL="https://download.blender.org/release/Blender${MAJOR}/blender-${BLENDER_VERSION}-linux-x64.tar.xz"
+          echo "Downloading $URL"
+          curl -fsSL "$URL" -o blender.tar.xz
+          mkdir -p "$HOME/blender"
+          tar -xf blender.tar.xz -C "$HOME/blender" --strip-components=1
+          echo "$HOME/blender" >> "$GITHUB_PATH"
+
+      - name: Show Blender version
+        run: xvfb-run -a blender --version
+
+      - name: Build extension
+        run: |
+          set -euo pipefail
+          NAME="bareblocks-${GITHUB_REF_NAME}.zip"
+          xvfb-run -a blender --command extension build \
+            --source-dir "$GITHUB_WORKSPACE" \
+            --output-filepath "$GITHUB_WORKSPACE/$NAME"
+          echo "ARTIFACT=$NAME" >> "$GITHUB_ENV"
+
+      - name: Validate extension
+        run: xvfb-run -a blender --command extension validate "$GITHUB_WORKSPACE/${{ env.ARTIFACT }}"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bareblocks-extension
+          path: ${{ env.ARTIFACT }}
+          if-no-files-found: error
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: BareBlocks ${{ github.ref_name }}
+          files: ${{ env.ARTIFACT }}
+          generate_release_notes: true
+          fail_on_unmatched_files: true

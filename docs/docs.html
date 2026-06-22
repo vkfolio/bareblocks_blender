@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BareBlocks — Documentation</title>
+<meta name="description" content="How to install and use BareBlocks: the palette, block types, BareBlocks mode and gizmos, the grid material, align & distribute, bundles, and the AI assistant.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32"><polygon points="16,3 29,10.5 16,18 3,10.5" fill="#6aa6ff"/><polygon points="3,10.5 16,18 16,30 3,22.5" fill="#2f74e0"/><polygon points="29,10.5 16,18 16,30 29,22.5" fill="#1c4f9e"/></svg>
+      BareBlocks
+    </a>
+    <div class="links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#blocks">Blocks</a>
+      <a href="index.html#ai">AI</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://github.com/vkfolio/bareblocks">GitHub</a>
+    </div>
+    <a class="btn btn-primary" href="https://github.com/vkfolio/bareblocks/releases/latest">Download free</a>
+  </div>
+</nav>
+
+<div class="wrap doc">
+  <aside class="toc">
+    <div class="grp">Start</div>
+    <a href="#install">Install</a>
+    <a href="#add">Add a block</a>
+    <a href="#edit">Edit dimensions</a>
+    <div class="grp">Build</div>
+    <a href="#types">Block types</a>
+    <a href="#mode">BareBlocks mode &amp; gizmos</a>
+    <a href="#paths">Spline paths</a>
+    <a href="#material">Grid material</a>
+    <a href="#align">Align &amp; distribute</a>
+    <a href="#bundles">Bundles &amp; assets</a>
+    <div class="grp">Assist</div>
+    <a href="#ai">AI assistant</a>
+    <a href="#convert">Convert to mesh</a>
+    <div class="grp">Help</div>
+    <a href="#faq">FAQ</a>
+  </aside>
+
+  <main class="prose">
+    <span class="eyebrow">Documentation · v1.0</span>
+    <h2 id="install" style="margin-top:14px">Install</h2>
+    <p>BareBlocks is free, open source (GPL-3.0), and a single Blender extension. It needs <b>Blender&nbsp;4.2 or newer</b> (developed and tested on 5.1) and has <b>no other dependencies</b>.</p>
+    <ul>
+      <li><a href="https://github.com/vkfolio/bareblocks/releases/latest">Download the latest <code>bareblocks.zip</code></a> from the releases page.</li>
+      <li>Open Blender → <span class="panelpath">Edit ▸ Preferences ▸ Get Extensions ▸ Install from Disk…</span></li>
+      <li>Pick the <code>bareblocks.zip</code>.</li>
+      <li>Enable <b>BareBlocks</b> if it isn't already on.</li>
+    </ul>
+    <p>Find everything in the 3D viewport sidebar: press <kbd>N</kbd> and open the <b>BareBlocks</b> tab. Blocks are also under <kbd>Shift</kbd>+<kbd>A</kbd> ▸ BareBlocks.</p>
+
+    <h2 id="add">Add a block</h2>
+    <p>In the <b>Add Blockout</b> panel, each category shows a big thumbnail. Click it to open a grid of large icons, then click a shape to drop it into the scene.</p>
+    <ul>
+      <li><b>At 3D Cursor</b> — place new blocks at the cursor instead of the world origin.</li>
+      <li><b>Snap to Grid</b> — round the placement to the grid size.</li>
+    </ul>
+
+    <h2 id="edit">Edit dimensions</h2>
+    <p>Every block is live <b>Geometry Nodes</b> — nothing is baked. Select a block and the <b>Blockout Tools</b> panel exposes its parameters (the same fields also appear on the modifier). Change a size, step count or radius any time and the block rebuilds instantly.</p>
+    <div class="callout">Because blocks are non-destructive, you can keep iterating on a layout right up to final art — then <a href="#convert">convert to mesh</a> only when you're ready.</div>
+
+    <h2 id="types">Block types</h2>
+    <p>42 blocks across 11 categories. All are declared in one registry, so the palette, menu, edit panel, gizmos and AI tools stay in sync.</p>
+    <table class="params">
+      <tr><th>Category</th><th>Blocks</th></tr>
+      <tr><td>Primitives</td><td>Box · Plane · Cylinder · Tube · Sphere · Cone (top/bottom radius)</td></tr>
+      <tr><td>Structural</td><td>Wall · Floor · Pillar · Sleeve (taper + skew)</td></tr>
+      <tr><td>Ramps &amp; Corners</td><td>Ramp (run/width/rise) · Corner Curved (convex or inner)</td></tr>
+      <tr><td>Openings</td><td>Window · Doorway · Arch</td></tr>
+      <tr><td>Stairs</td><td>Stairs · Stairs Curved (spline)</td></tr>
+      <tr><td>Path</td><td>Track · Railing (spline)</td></tr>
+      <tr><td>Signage</td><td>Sign · Billboard</td></tr>
+      <tr><td>Trees</td><td>Tree + Pine · Palm · Oak · Birch · Willow · Cypress · Acacia · Cherry · Banyan · Baobab · Bamboo</td></tr>
+      <tr><td>Nature</td><td>Bush · Rock</td></tr>
+      <tr><td>Structures</td><td>Well · Bridge · Tower</td></tr>
+      <tr><td>Props</td><td>Barrier · Bench · Lamppost · Fountain</td></tr>
+    </table>
+    <p><b>Corner Curved</b> is a solid rounded corner — convex by default, scooped with <b>Is Inner</b>. <b>Window / Doorway / Arch</b> leave a connected frame. <b>Trees</b> are presets of one generator: pick a <b>Canopy Shape</b> (Sphere / Cone / Column / Umbrella / Fronds / None) and set width, height, multi-trunk and droop.</p>
+
+    <h2 id="mode">BareBlocks mode &amp; gizmos</h2>
+    <p>Click <b>Enter BareBlocks Mode</b> at the top of the panel (or pick the BareBlocks tool from the toolbar, <kbd>T</kbd>). In the mode:</p>
+    <ul>
+      <li>Blender's <b>move / rotate / scale</b> gizmos stay on, <b>and</b> BareBlocks <b>face handles</b> appear on the active block.</li>
+      <li>Drag a face handle to resize. The opposite face stays anchored; hold <kbd>Alt</kbd> to grow symmetrically from the center.</li>
+      <li>Hold <kbd>Shift</kbd> to snap to major grid lines, <kbd>Ctrl</kbd> for minor lines. A header readout shows the live size (<code>Size X: 1.10 m</code>).</li>
+      <li><b>Per-type handles</b> — each block shows handles for its own parameters: Cylinder/Sphere/Corner <b>Radius</b>, Track <b>Width / Wall Height</b>, Stairs <b>Width</b>, Curved Stairs <b>Inner Radius</b> plus an <b>angle dial</b> for sweep.</li>
+    </ul>
+
+    <h2 id="paths">Spline paths</h2>
+    <p><b>Track, Railing, Wall</b> and <b>Stairs Curved</b> follow an editable spline. Press <kbd>Tab</kbd> to enter Edit Mode, then drag, add or extrude control points — the profile sweeps along the path live.</p>
+    <ul>
+      <li><b>Track</b> — a channel (floor + side walls) with optional rails and posts.</li>
+      <li><b>Wall</b> — a slab that bends smoothly (curved handles) or turns sharp corners (poly handles).</li>
+      <li>The grid material flows along the path, so cells stay square around bends.</li>
+    </ul>
+
+    <h2 id="material">Grid material</h2>
+    <p>All blocks share a procedural <b>Blockout Material</b>: a triplanar grid + checker locked to each block, so it doesn't swim when you move or rotate. Minor lines mark every cell; brighter major lines help you read distance.</p>
+    <table class="params">
+      <tr><th>Control</th><th>Does</th></tr>
+      <tr><td>Color</td><td>Base block color (defaults to blueprint blue).</td></tr>
+      <tr><td>Use Grid</td><td>Toggle the grid lines on the checker.</td></tr>
+      <tr><td>World Aligned</td><td>One shared world grid instead of a per-block grid.</td></tr>
+      <tr><td>Grid Size</td><td>Cell size in metres.</td></tr>
+      <tr><td>Top Color</td><td>Optional tint on upward faces.</td></tr>
+    </table>
+    <p><b>Make Material Unique</b> detaches an editable copy for the active block; <b>Use Custom</b> assigns your own material to the selection.</p>
+
+    <h2 id="align">Align &amp; distribute</h2>
+    <p>Select 2+ objects and use the <b>Align &amp; Distribute</b> panel — it works like Illustrator, in the <b>view plane</b>. In an orthographic view (numpad <kbd>1</kbd>/<kbd>7</kbd>/<kbd>3</kbd>) it behaves as a true 2D layout tool.</p>
+    <ul>
+      <li><b>Align</b> left / center / right and top / center / bottom along the screen axes.</li>
+      <li><b>Distribute</b> evenly spaces centers; the two outermost stay put.</li>
+      <li><b>Align To</b> — the whole selection's bounds, or the active object (the key object).</li>
+    </ul>
+
+    <h2 id="bundles">Bundles &amp; assets</h2>
+    <p>Turn a selection into a reusable prefab from the <b>Bundles</b> panel.</p>
+    <ul>
+      <li><b>Save Bundle</b> — writes the selected objects to a <code>.blend</code> in the bundle folder and marks them as assets.</li>
+      <li><b>Import Bundle</b> — append a saved bundle back into the scene.</li>
+      <li><b>Register Asset Library</b> — add the bundle folder to Blender's Asset Libraries for drag-and-drop from the Asset Browser.</li>
+    </ul>
+
+    <h2 id="ai">AI assistant</h2>
+    <p>Build and edit scenes from a prompt — <i>“a race-track loop with railings and a billboard,”</i> then <i>“make the walls taller.”</i></p>
+    <h3>Setup</h3>
+    <p>Paste your <b>OpenAI API key</b> in <span class="panelpath">Preferences ▸ Add-ons ▸ BareBlocks</span> and pick a model (default <code>gpt-4o</code>). The key is stored in Blender preferences and sent only to <code>api.openai.com</code>.</p>
+    <h3>Use</h3>
+    <ul>
+      <li><b>Plan</b> — the agent returns an editable checklist. Reword a step, uncheck steps to skip them, or add your own.</li>
+      <li><b>Approve &amp; Build</b> — it runs only the enabled steps, placing blocks live with the model's reasoning streaming into the Activity log.</li>
+      <li><b>Build directly</b> skips planning for quick edits; <kbd>Esc</kbd> cancels a run.</li>
+    </ul>
+    <div class="callout">The agent uses the blocks as tools (<code>add_block</code>, <code>edit_block</code>, <code>move_block</code>, <code>set_color</code>, <code>shape_path</code>, <code>delete_block</code>). Its base rules keep pieces on the ground, at human scale, evenly spaced. No packages to install — it uses Blender's bundled Python on a background thread, so Blender never freezes.</div>
+
+    <h2 id="convert">Convert to mesh</h2>
+    <p>When a block is final, <b>Convert to Mesh</b> (Blockout Tools panel) applies the modifier on the selection, turning it into a plain editable mesh while keeping the Blockout material.</p>
+
+    <h2 id="faq">FAQ</h2>
+    <h3>Is it really free?</h3>
+    <p>Yes — BareBlocks is free and open source under the <b>GPL-3.0</b>. Download it, use it on any project (personal or commercial), read the source, and fork it. The only thing you might pay for is your own OpenAI usage if you use the AI assistant.</p>
+    <h3>Can I contribute or report a bug?</h3>
+    <p>Please do — issues and pull requests are welcome on <a href="https://github.com/vkfolio/bareblocks">GitHub</a>.</p>
+    <h3>Which Blender versions are supported?</h3>
+    <p>Blender 4.2 and newer. It ships as the new extension format and is tested on 5.1.</p>
+    <h3>Does the AI cost extra?</h3>
+    <p>BareBlocks doesn't charge for it — you bring your own OpenAI API key, and OpenAI bills you for usage. The rest of the add-on works fully without a key.</p>
+    <h3>Can I add my own block types?</h3>
+    <p>The kit is registry-driven: a new type is one registry entry plus a Geometry-Nodes builder, and it automatically appears in the palette, menu, gizmos and AI tools.</p>
+    <h3>Do blocks stay editable after I save?</h3>
+    <p>Yes. Parameters are stored on the modifier and persist with the <code>.blend</code>; blocks also auto-upgrade when the node groups change in an update.</p>
+    <h3>Is it destructive?</h3>
+    <p>Never, until you choose. Everything is live Geometry Nodes; <b>Convert to Mesh</b> bakes only when you ask.</p>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html" style="font-size:16px">
+      <svg viewBox="0 0 32 32" style="width:22px;height:22px"><polygon points="16,3 29,10.5 16,18 3,10.5" fill="#6aa6ff"/><polygon points="3,10.5 16,18 16,30 3,22.5" fill="#2f74e0"/><polygon points="29,10.5 16,18 16,30 29,22.5" fill="#1c4f9e"/></svg>
+      BareBlocks
+    </a>
+    <span style="font-family:var(--mono);font-size:12px;color:var(--muted2)">© 2026 · v1.0</span>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="https://github.com/vkfolio/bareblocks">GitHub</a>
+      <a href="https://github.com/vkfolio/bareblocks/blob/main/LICENSE">License</a>
+      <a href="https://www.blender.org/">Blender</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

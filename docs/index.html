@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BareBlocks — parametric blockout for Blender</title>
+<meta name="description" content="A parametric greyboxing kit for Blender: 42 live primitives, spline roads and walls, a snapping grid material, viewport gizmos, and an AI that builds scenes from a prompt.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<meta property="og:title" content="BareBlocks — parametric blockout for Blender">
+<meta property="og:description" content="Block out worlds, not geometry. 42 live primitives, spline paths, a grid material, and an AI scene builder.">
+<meta property="og:image" content="assets/hero.png">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32"><polygon points="16,3 29,10.5 16,18 3,10.5" fill="#6aa6ff"/><polygon points="3,10.5 16,18 16,30 3,22.5" fill="#2f74e0"/><polygon points="29,10.5 16,18 16,30 29,22.5" fill="#1c4f9e"/></svg>
+      BareBlocks
+    </a>
+    <div class="links">
+      <a href="#watch">Watch</a>
+      <a href="#features">Features</a>
+      <a href="#blocks">Blocks</a>
+      <a href="#ai">AI</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://github.com/vkfolio/bareblocks">GitHub</a>
+    </div>
+    <a class="btn btn-primary" href="https://github.com/vkfolio/bareblocks/releases/latest">Download free</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Free &amp; open source · Blender 4.2+</span>
+      <h1>Block out worlds,<br><span class="hl">not geometry.</span></h1>
+      <p class="lead">A parametric greyboxing kit for Blender. Drop in live primitives, bend roads and walls along splines, and let an AI assemble whole scenes — every piece stays editable.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/vkfolio/bareblocks/releases/latest">Download free →</a>
+        <a class="btn btn-ghost" href="https://github.com/vkfolio/bareblocks">View on GitHub</a>
+      </div>
+      <p class="note">// GPL-3.0 · Geometry Nodes · no dependencies · tested on Blender 5.1</p>
+    </div>
+    <div class="frame">
+      <span class="corner c-tl"></span><span class="corner c-tr"></span>
+      <span class="corner c-bl"></span><span class="corner c-br"></span>
+      <span class="tick t-tl">// scene.blockout</span>
+      <span class="tick t-tr">GRID 1.0 m</span>
+      <span class="tick t-bl">x 26.0 · y 26.0</span>
+      <span class="tick t-br">42 types</span>
+      <img src="assets/hero.png" alt="A greybox town blocked out with BareBlocks: a building, tower, road, stairs, trees and a billboard on a blue grid.">
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">42<span class="u">+</span></div><div class="l">Building blocks</div></div>
+    <div class="stat"><div class="n">12</div><div class="l">Tree species</div></div>
+    <div class="stat"><div class="n">11</div><div class="l">Categories</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">Packages to install</div></div>
+  </div>
+</div>
+
+<section class="videosec" id="watch">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Watch · 2 min</span>
+      <h2>See a level come together.</h2>
+      <p>Drop blocks, drag a gizmo to resize, bend a road along a spline, and let the AI fill in the rest.</p>
+    </div>
+    <div class="video-wrap">
+      <!-- To embed the real video, replace the block below with one iframe, e.g.:
+        <div class="video"><iframe src="https://www.youtube.com/embed/VIDEO_ID"
+             title="BareBlocks demo" allow="accelerated-destination; autoplay; clipboard-write;
+             encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        (or a self-hosted file: <div class="video"><video controls poster="assets/hero.png"
+             src="assets/demo.mp4"></video></div>) -->
+      <a class="video" href="https://www.youtube.com/watch?v=VIDEO_ID" aria-label="Play the BareBlocks demo video">
+        <img src="assets/poster.png" alt="">
+        <span class="play"><span></span></span>
+        <span class="cap">// bareblocks-demo.mp4</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What's inside</span>
+      <h2>A whole greyboxing pipeline, built into the N-panel.</h2>
+      <p>Everything is driven by Geometry Nodes, so nothing is ever baked. Resize, re-route, recolor and rebuild as the design changes.</p>
+    </div>
+    <div class="features">
+      <div class="card"><div class="ic">▦</div><h3>Parametric primitives</h3><p>Every block is live Geometry Nodes — size, taper, steps, radius and more stay editable forever.</p><div class="tag">Non-destructive</div></div>
+      <div class="card"><div class="ic">▥</div><h3>Snapping grid material</h3><p>A triplanar grid + checker locks to each block, with minor and major lines that read as real measurements.</p><div class="tag">Per-object color</div></div>
+      <div class="card"><div class="ic">⌇</div><h3>Spline roads, walls & stairs</h3><p>Track, Wall, Railing and Curved Stairs follow an editable spline — bend the path for smooth curves or sharp corners.</p><div class="tag">Follows a curve</div></div>
+      <div class="card"><div class="ic">✦</div><h3>AI scene builder</h3><p>Describe a scene; the agent proposes an editable checklist, you approve, and it builds with the blocks — using your OpenAI key.</p><div class="tag">Plan → approve → build</div></div>
+      <div class="card"><div class="ic">⤢</div><h3>In-viewport gizmos</h3><p>BareBlocks mode adds resize handles with live cm/m readouts and grid snapping, next to Blender's transform gizmos.</p><div class="tag">Drag to resize</div></div>
+      <div class="card"><div class="ic">▤</div><h3>Align, distribute & bundles</h3><p>Illustrator-style align/distribute in the view plane, plus reusable block bundles and an asset library.</p><div class="tag">Layout tools</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="blocks" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="eyebrow">The kit</span>
+        <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(28px,3.4vw,40px);letter-spacing:-.02em;margin:14px 0 12px;line-height:1.1">42 blocks. One palette.</h2>
+        <p style="color:var(--muted);font-size:17px;margin:0">Click a thumbnail to drop a block, then dial it in from the panel. From boxes and ramps to doorways, spiral stairs, signage and street props.</p>
+        <div class="chips">
+          <span class="chip on">Primitives</span><span class="chip">Structural</span>
+          <span class="chip">Ramps &amp; Corners</span><span class="chip">Openings</span>
+          <span class="chip">Stairs</span><span class="chip">Path</span>
+          <span class="chip">Signage</span><span class="chip on">Trees</span>
+          <span class="chip">Structures</span><span class="chip">Props</span>
+        </div>
+      </div>
+      <div class="shot"><img src="assets/blocks.png" alt="The BareBlocks palette: 42 blue blockout thumbnails with labels."></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="split rev">
+      <div>
+        <span class="eyebrow">Nature</span>
+        <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(28px,3.4vw,40px);letter-spacing:-.02em;margin:14px 0 12px;line-height:1.1">A forest from one node tree.</h2>
+        <p style="color:var(--muted);font-size:17px;margin:0">One procedural tree generator drives twelve species presets — pine, palm, oak, willow, cypress, banyan and more. Swap canopy shape, height, multi-trunk and droop.</p>
+        <ul>
+          <li><b>Canopy shapes</b> — sphere, cone, column, umbrella, fronds.</li>
+          <li><b>Multi-trunk</b> — banyans and bamboo from one slider.</li>
+          <li><b>Per-tree color</b> — recolor without touching the others.</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="assets/trees.png" alt="Twelve blockout tree species rendered in blue."></div>
+    </div>
+  </div>
+</section>
+
+<section class="aispot" id="ai">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="eyebrow">★ Built-in AI · the standout</span>
+        <h2>Describe a scene.<br>It builds it.</h2>
+        <p>No other blockout kit does this. An agent that uses the blocks as its tools — it plans the layout, then constructs it, while you stay in control.</p>
+        <ul class="ailist">
+          <li><b>Plans first</b> — returns an editable checklist; reword, reorder or uncheck steps before anything is created.</li>
+          <li><b>Builds with the blocks</b> — adds, edits, recolors and routes them, keeping pieces on the ground and to scale.</li>
+          <li><b>Shows its work</b> — the model's reasoning streams into the activity log as it goes.</li>
+          <li><b>Your key, your model</b> — runs on your own OpenAI key; nothing extra to install.</li>
+        </ul>
+      </div>
+      <div class="aipanel" role="img" aria-label="Mockup of the BareBlocks AI Assistant: a prompt, an editable plan checklist, and a live build log.">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><b>BareBlocks · AI Assistant</b></div>
+        <div class="body">
+          <div class="ailabel">Prompt</div>
+          <div class="aiprompt">a race-track loop with railings, a billboard at the entrance, and pines along the inside<span class="caret"></span></div>
+          <div class="ailabel">Plan · 5 steps · edit before building</div>
+          <div class="aistep"><span class="box on">✓</span> Add a Track loop (~40 m) with side rails</div>
+          <div class="aistep"><span class="box on">✓</span> Shape the path through 6 points</div>
+          <div class="aistep"><span class="box on">✓</span> Place a Billboard at the entrance</div>
+          <div class="aistep"><span class="box on">✓</span> Line the inside edge with 6 Pines</div>
+          <div class="aistep off"><span class="box"></span> Add a Tower at the centre</div>
+          <a class="btn btn-primary aibuild" href="#watch">Approve &amp; Build</a>
+          <div class="ailabel">Activity</div>
+          <pre class="ailog"><span class="think">* planning layout, keeping pieces on the ground…</span>
+<span class="ok">[✓]</span> added BB_Track
+<span class="ok">[✓]</span> shaped path · 6 points
+<span class="ok">[✓]</span> added BB_Billboard
+<span class="think">* placing pines along the inner edge…</span>
+<span class="ok">[✓]</span> added BB_Pine ×6</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="buy">
+      <div>
+        <span class="eyebrow">Get BareBlocks</span>
+        <h2>Free and open source. Forever.</h2>
+        <p>A single Blender extension — download the <code>.zip</code>, install from disk, and enable. Built for Blender&nbsp;4.2+ and tested on 5.1.</p>
+        <p style="margin-top:14px">GPL-3.0 licensed: read the code, fork it, ship your own blocks. The whole kit — every block type, the AI assistant, gizmos and bundles — at no cost.</p>
+      </div>
+      <div class="price">
+        <a class="btn btn-primary" href="https://github.com/vkfolio/bareblocks/releases/latest">Download free →</a>
+        <a class="btn btn-ghost" href="https://github.com/vkfolio/bareblocks" style="width:100%;justify-content:center;margin-top:10px">Star on GitHub</a>
+        <div class="meta" style="margin-top:18px">GPL-3.0 · BLENDER 4.2+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html" style="font-size:16px">
+      <svg viewBox="0 0 32 32" style="width:22px;height:22px"><polygon points="16,3 29,10.5 16,18 3,10.5" fill="#6aa6ff"/><polygon points="3,10.5 16,18 16,30 3,22.5" fill="#2f74e0"/><polygon points="29,10.5 16,18 16,30 29,22.5" fill="#1c4f9e"/></svg>
+      BareBlocks
+    </a>
+    <span style="font-family:var(--mono);font-size:12px;color:var(--muted2)">© 2026 · v1.0</span>
+    <div class="links">
+      <a href="docs.html">Docs</a>
+      <a href="https://github.com/vkfolio/bareblocks">GitHub</a>
+      <a href="https://github.com/vkfolio/bareblocks/blob/main/LICENSE">License</a>
+      <a href="https://www.blender.org/">Blender</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
