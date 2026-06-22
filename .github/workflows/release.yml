@@ -35,10 +35,11 @@ jobs:
           MAJOR="$(echo "$BLENDER_VERSION" | cut -d. -f1,2)"
           URL="https://download.blender.org/release/Blender${MAJOR}/blender-${BLENDER_VERSION}-linux-x64.tar.xz"
           echo "Downloading $URL"
-          curl -fsSL "$URL" -o blender.tar.xz
-          mkdir -p "$HOME/blender"
-          tar -xf blender.tar.xz -C "$HOME/blender" --strip-components=1
-          echo "$HOME/blender" >> "$GITHUB_PATH"
+          # Download + extract OUTSIDE the repo workspace so the build never bundles it.
+          curl -fsSL "$URL" -o "$RUNNER_TEMP/blender.tar.xz"
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
 
       - name: Show Blender version
         run: xvfb-run -a blender --version

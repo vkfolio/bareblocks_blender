@@ -28,6 +28,10 @@ paths_exclude_pattern = [
   "/docs/",
   "/.git/",
   "/.github/",
+  "/.gitignore",
   "/*.zip",
   "*.blend1",
+  # guards: never bundle a Blender download if CI ever drops one in the workspace
+  "/blender.tar.xz",
+  "/blender/",
 ]
